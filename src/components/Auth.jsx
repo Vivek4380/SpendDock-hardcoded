@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from "../services/supabaseClient";
 
 export default function Auth() {
   const [isDark, setIsDark] = useState(true);
@@ -21,11 +22,64 @@ export default function Auth() {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log('Form submitted:', formData);
-    alert(`${isSignIn ? 'Sign In' : 'Sign Up'} successful!\nEmail: ${formData.email}`);
-  };
+const handleSubmit = async () => {
 
+  if (!isSignIn) {
+    alert("Sign up will be added later for MVP");
+    return;
+  }
+
+  try {
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: formData.email,
+      password: formData.password
+    });
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    const user = data.user;
+    if (!user) {
+      alert("User not found");
+      return;
+    }
+
+    // Fetch role from user_profiles
+    const { data: profile, error: profileError } = await supabase
+      .from("user_profiles")
+      .select("role, company_id")
+      .eq("auth_user_id", user.id)
+      .single();
+
+    if (profileError) {
+      console.error(profileError);
+      alert("Profile not found");
+      return;
+    }
+
+    console.log("User profile:", profile);
+
+    // Store companyId for later API calls
+    localStorage.setItem("role", profile.role);
+    localStorage.setItem("role", profile.role);
+
+    // Route based on role
+    if (profile.role === "manager" || profile.role === "accountant") {
+      navigate("/vendor");
+    } else if (profile.role === "client") {
+      navigate("/client");
+    } else {
+      alert("Unknown role");
+    }
+
+  } catch (err) {
+    console.error("Login error:", err);
+    alert("Login failed");
+  }
+};
   const toggleForm = () => {
     setIsSignIn(!isSignIn);
     setFormData({
