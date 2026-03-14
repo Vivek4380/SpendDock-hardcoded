@@ -165,7 +165,7 @@ export default function VendorPortal() {
             {[
               { id: "dashboard", icon: "📊", label: "Dashboard" },
               { id: "invoices", icon: "📄", label: "My Invoices" },
-              { id: "upload", icon: "📤", label: "Upload New" },
+              ...(role === "accountant" ? [{ id: "upload", icon: "📤", label: "Upload New" }] : []),
               { id: "payments", icon: "💳", label: "Payments" },
               { id: "analytics", icon: "📈", label: "Analytics" },
               { id: "settings", icon: "⚙️", label: "Settings" },
@@ -281,7 +281,7 @@ export default function VendorPortal() {
           )}
 
           {/* ── Upload ── */}
-          {activeTab === "upload" && (
+          {activeTab === "upload" && role === "accountant" && (
             <div className={`backdrop-blur-xl ${isDark ? "bg-gradient-to-br from-white/10 to-white/5" : "bg-gradient-to-br from-black/10 to-black/5"} rounded-2xl p-8 border ${isDark ? "border-white/20" : "border-black/20"} mb-8`}>
               <div className="flex items-center justify-between">
                 <div>

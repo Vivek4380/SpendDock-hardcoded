@@ -233,9 +233,7 @@ export default function Home() {
               <a href="#features" className={`${isDark ? 'text-white/80 hover:text-white' : 'text-black/80 hover:text-black'} transition`}>
                 Features
               </a>
-              <a href="#pricing" className={`${isDark ? 'text-white/80 hover:text-white' : 'text-black/80 hover:text-black'} transition`}>
-                Pricing
-              </a>
+              
               <button
               onClick={() => navigate('/auth')}
               className={`px-6 py-2.5 rounded-xl ${isDark ? 'text-white/80 hover:text-white cursor-pointer' : 'text-black/80 hover:text-black cursor-pointer'} transition`}>
@@ -280,12 +278,11 @@ export default function Home() {
               </p>
               
               <div className="flex space-x-4">
-                <button className={`px-8 py-4 rounded-xl ${isDark ? 'bg-white text-black hover:shadow-2xl hover:shadow-white/30 cursor-pointer' : 'bg-black text-white hover:shadow-2xl hover:shadow-black/30 cursor-pointer'} font-medium text-lg transition transform hover:scale-105`}>
-                  Start Free Trial
-                </button>
-                <button className={`px-8 py-4 rounded-xl backdrop-blur-xl ${isDark ? 'bg-white/10 hover:bg-white/20 text-white border-white/20 cursor-pointer' : 'bg-black/10 hover:bg-black/20 text-black border-black/20 cursor-pointer'} border font-medium text-lg transition`}>
-                  Watch Demo
-                </button>
+              <button
+                onClick={() => navigate('/auth')}
+                className={`px-8 py-4 rounded-xl ${isDark ? 'bg-white text-black hover:shadow-2xl hover:shadow-white/30 cursor-pointer' : 'bg-black text-white hover:shadow-2xl hover:shadow-black/30 cursor-pointer'} font-medium text-lg transition transform hover:scale-105`}>
+                Sign In to Get Started
+              </button>
               </div>
             </div>
 
@@ -374,12 +371,10 @@ export default function Home() {
             <h2 className={`text-5xl font-bold ${isDark ? 'text-white' : 'text-black'} mb-6`}>
               Ready to Get Started?
             </h2>
-            <p className={`text-xl ${isDark ? 'text-white/60' : 'text-black/60'} mb-10`}>
+            <p className={`text-xl ${isDark ? 'text-white/60' : 'text-black/60'} mb-0`}>
               Join hundreds of companies automating their invoice processing
             </p>
-            <button className={`px-10 py-5 rounded-xl ${isDark ? 'bg-white text-black hover:shadow-2xl hover:shadow-white/30 cursor-pointer' : 'bg-black text-white hover:shadow-2xl hover:shadow-black/30 cursor-pointer'} font-medium text-lg transition transform hover:scale-105`}>
-              Start Free Trial →
-            </button>
+            
           </div>
         </div>
       </div>

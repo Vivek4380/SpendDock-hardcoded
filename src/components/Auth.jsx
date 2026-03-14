@@ -63,7 +63,7 @@ const handleSubmit = async () => {
     console.log("User profile:", profile);
 
     // Store companyId for later API calls
-    localStorage.setItem("role", profile.role);
+    localStorage.setItem("companyId", profile.company_id);
     localStorage.setItem("role", profile.role);
 
     // Route based on role
